@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementAgent : MonoBehaviour
@@ -12,7 +9,7 @@ public class MovementAgent : MonoBehaviour
 
     private const float TOLERANCE = 0.1f;
 
-    void Update()
+    private void Update()
     {
         float distance = (m_Target - transform.position).magnitude;
         if (distance < TOLERANCE)
