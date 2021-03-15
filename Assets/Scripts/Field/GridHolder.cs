@@ -23,12 +23,10 @@ namespace Field
         private Camera m_Camera;
 
         private Vector3 m_Offset;
-
-        public Vector2Int StartCoordinate => m_StartCoordinate;
-
+        
         public Grid Grid => m_Grid;
 
-        private void Start()
+        public void CreateGrid()
         {
             m_Camera = Camera.main;
 
@@ -43,7 +41,7 @@ namespace Field
 
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
-            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate);
+            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_StartCoordinate, m_TargetCoordinate);
         }
 
         private void OnValidate()
@@ -61,7 +59,7 @@ namespace Field
                        (new Vector3(width, 0f, height) * 0.5f);
         }
 
-        private void Update()
+        public void RayCastInGrid()
         {
             if (m_Grid == null || m_Camera == null)
             {
@@ -76,6 +74,7 @@ namespace Field
             {
                 if (hit.transform != transform)
                 {
+                    m_Grid.UnselectCoordinate();
                     return;
                 }
 
@@ -85,13 +84,9 @@ namespace Field
                 int x = (int) (difference.x / m_NodeSize);
                 int y = (int) (difference.z / m_NodeSize);
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Node node = m_Grid.GetNode(x, y);
-                    node.IsOccupied = !node.IsOccupied;
-                    m_Grid.UpdatePathfinding();
-                }
+                m_Grid.SelectCoordinate(new Vector2Int(x, y));
             }
+            m_Grid.UnselectCoordinate();
         }
 
         private void OnDrawGizmos()
