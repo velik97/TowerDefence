@@ -1,14 +1,19 @@
+using Field;
+
 namespace Turret
 {
     public class TurretData
     {
+        private Node m_Node;
         private TurretView m_View;
 
         public TurretView View => m_View;
 
-        public TurretData(TurretAsset asset)
+        public Node Node => m_Node;
+
+        public TurretData(TurretAsset asset, Node node)
         {
-            
+            m_Node = node;
         }
 
         public void AttachView(TurretView view)

@@ -11,6 +11,7 @@ namespace Turret
         public void AttachData(TurretData data)
         {
             m_Data = data;
+            transform.position = data.Node.Position;
         }
     }
 }
