@@ -49,6 +49,7 @@ namespace TurretSpawn
             data.AttachView(view);
 
             node.IsOccupied = true;
+            m_Grid.UpdatePathfinding();
 
             Game.Player.TurretSpawned(data);
         }
