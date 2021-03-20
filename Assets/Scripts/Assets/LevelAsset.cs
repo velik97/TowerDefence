@@ -1,4 +1,5 @@
 ﻿using EnemySpawn;
+using TurretSpawn;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Assets
     public class LevelAsset : ScriptableObject
     {
         public SceneAsset SceneAsset;
+        public TurretMarketAsset TurretMarketAsset;
         public SpawnWavesAsset SpawnWavesAsset;
     }
 }
