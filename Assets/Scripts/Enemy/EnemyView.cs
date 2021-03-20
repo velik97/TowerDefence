@@ -18,6 +18,7 @@ namespace Enemy
 
         public void CreateMovementAgent(Grid grid)
         {
+            transform.position = grid.GetStartNode().Position;
             m_MovementAgent = new GridMovementAgent(5f, transform, grid);
         }
     }
