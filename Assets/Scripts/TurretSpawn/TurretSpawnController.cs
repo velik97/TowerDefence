@@ -45,9 +45,12 @@ namespace TurretSpawn
         {
             TurretView view = Object.Instantiate(asset.ViewPrefab);
             TurretData data = new TurretData(asset, node);
+            
             data.AttachView(view);
 
             node.IsOccupied = true;
+
+            Game.Player.TurretSpawned(data);
         }
     }
 }
