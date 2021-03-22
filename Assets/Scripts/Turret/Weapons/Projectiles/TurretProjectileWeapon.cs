@@ -49,7 +49,8 @@ namespace Turret.Weapons.Projectiles
 
         private void Shoot()
         {
-            
+            m_Asset.ProjectileAsset.CreateProjectile(m_View.ProjectilePivot.position, m_View.ProjectilePivot.forward,
+                m_LastEnemyData);
         }
     }
 }

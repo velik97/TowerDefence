@@ -2,6 +2,8 @@
 {
     public class TurretProjectileWeaponAsset : TurretWeaponAssetBase
     {
+        public ProjectileAssetBase ProjectileAsset;
+        
         public float RateOfFire;
         public float MaxShotDistance;
 
