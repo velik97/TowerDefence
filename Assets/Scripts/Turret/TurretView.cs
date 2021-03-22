@@ -6,10 +6,15 @@ namespace Turret
     {
         [SerializeField]
         private Transform m_Tower;
+
+        [SerializeField]
+        private Transform m_ProjectilePivot;
         
         private TurretData m_Data;
 
         public TurretData Data => m_Data;
+
+        public Transform ProjectilePivot => m_ProjectilePivot;
 
         public void AttachData(TurretData data)
         {
