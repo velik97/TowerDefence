@@ -24,6 +24,7 @@ namespace Turret
 
         public void TowerLookAt(Vector3 target)
         {
+            target.y = m_Tower.position.y;
             m_Tower.LookAt(target, Vector3.up);
         }
     }

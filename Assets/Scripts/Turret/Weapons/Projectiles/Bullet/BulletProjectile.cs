@@ -7,7 +7,7 @@ namespace Turret.Weapons.Projectiles.Bullet
         protected override void TickApproaching()
         {
             Vector3 delta = EnemyData.View.transform.position - transform.position;
-            delta = delta.normalized * Asset.Speed;
+            delta = delta.normalized * (Asset.Speed * Time.deltaTime);
 
             transform.Translate(delta);
         }
@@ -15,6 +15,7 @@ namespace Turret.Weapons.Projectiles.Bullet
         protected override void OnCollidedWithEnemy()
         {
             EnemyData.GetDamage(Asset.Damage);
+            Destroy(gameObject);
         }
     }
 }

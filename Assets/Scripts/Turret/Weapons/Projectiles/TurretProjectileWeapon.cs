@@ -39,6 +39,7 @@ namespace Turret.Weapons.Projectiles
                 return;
             }
 
+            m_LastShotTime = Time.time;
             m_LastEnemyData = Game.Player.EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxShotDistance);
 
             if (m_LastEnemyData != null)
