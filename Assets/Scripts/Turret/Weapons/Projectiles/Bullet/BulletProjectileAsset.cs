@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Turret.Weapons.Projectiles.Bullet
 {
+    [CreateAssetMenu(menuName = "Assets/Bullet Projectile Asset", fileName = "Bullet Projectile Asset")]
     public class BulletProjectileAsset : ProjectileAssetBase
     {
         [SerializeField]

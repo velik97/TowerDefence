@@ -1,5 +1,8 @@
-﻿namespace Turret.Weapons.Projectiles
+﻿using UnityEngine;
+
+namespace Turret.Weapons.Projectiles
 {
+    [CreateAssetMenu(menuName = "Assets/Turret Projectile Weapon Asset", fileName = "Turret Projectile Weapon Asset")]
     public class TurretProjectileWeaponAsset : TurretWeaponAssetBase
     {
         public ProjectileAssetBase ProjectileAsset;
