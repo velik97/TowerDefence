@@ -13,6 +13,8 @@ namespace Turret.Weapons.Projectiles
 
         private float m_LastShotTime;
 
+        private EnemyData m_LastEnemyData;
+
         public TurretProjectileWeapon(TurretProjectileWeaponAsset asset, TurretView view)
         {
             m_Asset = asset;
@@ -26,21 +28,23 @@ namespace Turret.Weapons.Projectiles
 
         public void TickShoot()
         {
+            if (m_LastEnemyData != null)
+            {
+                m_View.TowerLookAt(m_LastEnemyData.View.transform.position);
+            }
+            
             float passedTime = Time.time - m_LastShotTime;
             if (passedTime < m_TimeBetweenShots)
             {
                 return;
             }
 
-            EnemyData closestEnemyData =
-                Game.Player.EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxShotDistance);
+            m_LastEnemyData = Game.Player.EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxShotDistance);
 
             if (closestEnemyData == null)
             {
                 return;
             }
-            
-            m_View.TowerLookAt(closestEnemyData.View.transform.position);
         }
     }
 }
