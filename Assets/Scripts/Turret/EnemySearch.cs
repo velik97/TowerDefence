@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Enemy;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Turret
@@ -12,7 +13,8 @@ namespace Turret
         {
             m_EnemyDatas = enemyDatas;
         }
-
+        
+        [CanBeNull]
         public EnemyData GetClosestEnemy(Vector3 center, float radius)
         {
             float maxSqrDistance = radius * radius;

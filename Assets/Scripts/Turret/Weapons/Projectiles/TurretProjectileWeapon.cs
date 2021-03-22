@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Enemy;
+using Runtime;
+using UnityEngine;
 
 namespace Turret.Weapons.Projectiles
 {
@@ -29,8 +31,16 @@ namespace Turret.Weapons.Projectiles
             {
                 return;
             }
+
+            EnemyData closestEnemyData =
+                Game.Player.EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxShotDistance);
+
+            if (closestEnemyData == null)
+            {
+                return;
+            }
             
-            
+            m_View.TowerLookAt(closestEnemyData.View.transform.position);
         }
     }
 }
