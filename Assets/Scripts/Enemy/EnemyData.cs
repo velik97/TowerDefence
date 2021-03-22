@@ -18,5 +18,10 @@ namespace Enemy
             m_View = view;
             m_View.AttachData(this);
         }
+
+        public void GetDamage(int damage)
+        {
+            
+        }
     }
 }
