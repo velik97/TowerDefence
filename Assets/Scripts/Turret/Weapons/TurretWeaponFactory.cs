@@ -1,4 +1,5 @@
 ﻿using System;
+using Turret.Weapons.Projectiles;
 
 namespace Turret.Weapons
 {

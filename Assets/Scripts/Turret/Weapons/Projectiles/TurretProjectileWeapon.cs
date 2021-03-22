@@ -1,4 +1,4 @@
-﻿namespace Turret.Weapons
+﻿namespace Turret.Weapons.Projectiles
 {
     public class TurretProjectileWeapon : ITurretWeapon
     {
