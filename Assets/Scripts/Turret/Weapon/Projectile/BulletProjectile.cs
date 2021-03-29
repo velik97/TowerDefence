@@ -10,6 +10,15 @@ namespace Turret.Weapon.Projectile
         private bool m_DidHit = false;
         private EnemyData m_HitEnemy = null;
 
+        private Vector3 m_StartPosition;
+
+        private const float MAX_SQR_DISTANCE = 200f * 200f;
+
+        private void Awake()
+        {
+            m_StartPosition = transform.position;
+        }
+
         public void SetSpeed(float speed)
         {
             m_Speed = speed;
@@ -18,6 +27,10 @@ namespace Turret.Weapon.Projectile
         public void TickProjectile()
         {
             transform.Translate(transform.forward * (m_Speed * Time.deltaTime), Space.World);
+            if ((m_StartPosition - transform.position).sqrMagnitude > MAX_SQR_DISTANCE)
+            {
+                m_DidHit = true;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
