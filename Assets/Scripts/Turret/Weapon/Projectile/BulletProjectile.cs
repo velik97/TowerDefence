@@ -7,6 +7,7 @@ namespace Turret.Weapon.Projectile
     public class BulletProjectile : MonoBehaviour, IProjectile
     {
         private float m_Speed;
+        private int m_Damage;
         private bool m_DidHit = false;
         private EnemyData m_HitEnemy = null;
 
@@ -19,9 +20,10 @@ namespace Turret.Weapon.Projectile
             m_StartPosition = transform.position;
         }
 
-        public void SetSpeed(float speed)
+        public void SetAsset(BulletProjectileAsset asset)
         {
-            m_Speed = speed;
+            m_Speed = asset.Speed;
+            m_Damage = asset.Damage;
         }
 
         public void TickProjectile()
@@ -53,11 +55,7 @@ namespace Turret.Weapon.Projectile
 
         public void DestroyProjectile()
         {
-            // if (m_HitEnemy != null)
-            // {
-            //     m_HitEnemy.Damage();
-            // }
-            Debug.Log("hit");
+            m_HitEnemy?.GetDamage(m_Damage);
             Destroy(gameObject);
         }
     }
