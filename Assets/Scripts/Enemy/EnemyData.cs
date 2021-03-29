@@ -1,4 +1,5 @@
 ﻿using Assets;
+using Runtime;
 using UnityEngine;
 
 namespace Enemy
@@ -9,6 +10,8 @@ namespace Enemy
         public EnemyView View => m_View;
 
         private int m_Health;
+        private bool m_IsDead;
+        public bool IsDead => m_IsDead;
 
         public EnemyData(EnemyAsset asset)
         {
@@ -32,7 +35,9 @@ namespace Enemy
 
         private void Die()
         {
-            Debug.Log("Die!");
+            m_IsDead = true;
+            Game.Player.EnemyDead(this);
+            View.Die();
         }
     }
 }
