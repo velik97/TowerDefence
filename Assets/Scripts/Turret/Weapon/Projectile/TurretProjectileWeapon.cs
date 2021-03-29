@@ -49,6 +49,8 @@ namespace Turret.Weapon.Projectile
                 return;
             }
             
+            TickTower();
+            
             Shoot(m_ClosestEnemyData);
             m_LastShotTime = Time.time;
         }
