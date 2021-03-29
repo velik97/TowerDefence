@@ -1,10 +1,11 @@
 ﻿using System;
 using Enemy;
 using UnityEngine;
+using Utils.Pooling;
 
 namespace Turret.Weapon.Projectile
 {
-    public class BulletProjectile : MonoBehaviour, IProjectile
+    public class BulletProjectile : PooledMonoBehaviour, IProjectile
     {
         private float m_Speed;
         private int m_Damage;
@@ -15,8 +16,10 @@ namespace Turret.Weapon.Projectile
 
         private const float MAX_SQR_DISTANCE = 200f * 200f;
 
-        private void Awake()
+        public override void AwakePooled()
         {
+            m_DidHit = false;
+            m_HitEnemy = null;
             m_StartPosition = transform.position;
         }
 
@@ -55,8 +58,11 @@ namespace Turret.Weapon.Projectile
 
         public void DestroyProjectile()
         {
-            m_HitEnemy?.GetDamage(m_Damage);
-            Destroy(gameObject);
+            if (m_HitEnemy != null && !m_HitEnemy.IsDead)
+            {
+                m_HitEnemy.GetDamage(m_Damage);
+            }
+            GameObjectPool.ReturnPooledObject(this);
         }
     }
 }
