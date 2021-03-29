@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Bullet Projectile Asset
   m_EditorClassIdentifier: 
   m_BulletProjectile: {fileID: 6990756715254028683, guid: 0f4656b8c549f3d4ba794e97f6075a16, type: 3}
+  m_Speed: 40
