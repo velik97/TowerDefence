@@ -53,14 +53,18 @@ namespace Turret.Weapon.Projectile
 
         private void TickProjectiles()
         {
-            foreach (IProjectile projectile in m_Projectiles)
+            for (int i = 0; i < m_Projectiles.Count; i++)
             {
+                IProjectile projectile = m_Projectiles[i];
                 projectile.TickProjectile();
                 if (projectile.DidHit())
                 {
                     projectile.DestroyProjectile();
+                    m_Projectiles[i] = null;
                 }
             }
+
+            m_Projectiles.RemoveAll(p => p == null);
         }
 
         private void Shoot(EnemyData enemyData)
