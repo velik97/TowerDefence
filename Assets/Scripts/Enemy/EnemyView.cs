@@ -18,7 +18,7 @@ namespace Enemy
 
         public void CreateMovementAgent(Grid grid)
         {
-            m_MovementAgent = new GridMovementAgent(5f, transform, grid);
+            m_MovementAgent = new GridMovementAgent(Data.Asset.Speed, transform, grid);
         }
 
         public void Die()

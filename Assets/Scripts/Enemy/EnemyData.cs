@@ -6,15 +6,19 @@ namespace Enemy
 {
     public class EnemyData
     {
+        private EnemyAsset m_Asset;
         private EnemyView m_View;
-        public EnemyView View => m_View;
-
+        
         private int m_Health;
         private bool m_IsDead;
+
+        public EnemyAsset Asset => m_Asset;
+        public EnemyView View => m_View;
         public bool IsDead => m_IsDead;
 
         public EnemyData(EnemyAsset asset)
         {
+            m_Asset = asset;
             m_Health = asset.StartHealth;
         }
 
