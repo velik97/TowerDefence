@@ -10,6 +10,7 @@ namespace Turret.Weapon.Projectile
         private TurretProjectileWeaponAsset m_Asset;
         private TurretView m_View;
 
+        private EnemyData m_ClosestEnemyData;
         private List<IProjectile> m_Projectiles = new List<IProjectile>();
         
         private float m_TimeBetweenShots;
@@ -28,6 +29,7 @@ namespace Turret.Weapon.Projectile
         public void TickShoot()
         {
             TickWeapon();
+            TickTower();
             TickProjectiles();
         }
 
@@ -39,16 +41,24 @@ namespace Turret.Weapon.Projectile
                 return;
             }
 
-            EnemyData closestEnemyData =
+            m_ClosestEnemyData =
                 Game.Player.EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxDistance);
 
-            if (closestEnemyData == null)
+            if (m_ClosestEnemyData == null)
             {
                 return;
             }
             
-            Shoot(closestEnemyData);
+            Shoot(m_ClosestEnemyData);
             m_LastShotTime = Time.time;
+        }
+
+        private void TickTower()
+        {
+            if (m_ClosestEnemyData != null)
+            {
+                m_View.TowerLookAt(m_ClosestEnemyData.View.transform.position);
+            }
         }
 
         private void TickProjectiles()
