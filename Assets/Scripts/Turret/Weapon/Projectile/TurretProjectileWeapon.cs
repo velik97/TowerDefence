@@ -27,6 +27,12 @@ namespace Turret.Weapon.Projectile
         
         public void TickShoot()
         {
+            TickWeapon();
+            TickProjectiles();
+        }
+
+        private void TickWeapon()
+        {
             float passedTime = Time.time - m_LastShotTime;
             if (passedTime < m_TimeBetweenShots)
             {
@@ -43,6 +49,11 @@ namespace Turret.Weapon.Projectile
             
             Shoot(closestEnemyData);
             m_LastShotTime = Time.time;
+        }
+
+        private void TickProjectiles()
+        {
+            
         }
 
         private void Shoot(EnemyData enemyData)
