@@ -1,4 +1,5 @@
-﻿using Enemy;
+﻿using System.Collections.Generic;
+using Enemy;
 using Runtime;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace Turret.Weapon.Projectile
     {
         private TurretProjectileWeaponAsset m_Asset;
         private TurretView m_View;
+
+        private List<IProjectile> m_Projectiles = new List<IProjectile>();
+        
         private float m_TimeBetweenShots;
         private float m_MaxDistance;
 
@@ -43,7 +47,7 @@ namespace Turret.Weapon.Projectile
 
         private void Shoot(EnemyData enemyData)
         {
-            m_Asset.ProjectileAsset.CreateProjectile(m_View.ProjectileOrigin.position, m_View.ProjectileOrigin.forward, enemyData);
+            m_Projectiles.Add(m_Asset.ProjectileAsset.CreateProjectile(m_View.ProjectileOrigin.position, m_View.ProjectileOrigin.forward, enemyData));
         }
     }
 }
