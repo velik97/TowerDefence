@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42699a982c564bf8891312f25c99a38f, type: 3}
   m_Name: Turret Projectile Weapon Asset
   m_EditorClassIdentifier: 
-  RateOfFire: 5
-  MaxDistance: 5
+  RateOfFire: 20
+  MaxDistance: 10
   ProjectileAsset: {fileID: 11400000, guid: fd572953e33dc404cb17a28696f542fa, type: 2}
