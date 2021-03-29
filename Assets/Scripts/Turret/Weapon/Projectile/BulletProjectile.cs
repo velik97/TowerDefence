@@ -17,7 +17,7 @@ namespace Turret.Weapon.Projectile
 
         public void TickProjectile()
         {
-            transform.Translate(transform.forward * m_Speed);
+            transform.Translate(transform.forward * (m_Speed * Time.deltaTime), Space.World);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -44,6 +44,7 @@ namespace Turret.Weapon.Projectile
             // {
             //     m_HitEnemy.Damage();
             // }
+            Debug.Log("hit");
             Destroy(gameObject);
         }
     }
