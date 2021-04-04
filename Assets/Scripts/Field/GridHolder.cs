@@ -44,6 +44,11 @@ namespace Field
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
             m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_StartCoordinate, m_TargetCoordinate);
+            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                Destroy(meshRenderer);
+            }
         }
 
         private void OnValidate()

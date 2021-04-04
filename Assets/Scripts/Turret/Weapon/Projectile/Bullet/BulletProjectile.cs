@@ -5,7 +5,7 @@ namespace Turret.Weapon.Projectile.Bullet
 {
     public class BulletProjectile : MonoBehaviour, IProjectile
     {
-        private float m_Speed = 10f;
+        private float m_Speed = 30f;
         private int m_Damage = 5;
         private bool m_DidHit = false;
         private EnemyData m_HitEnemy = null;
