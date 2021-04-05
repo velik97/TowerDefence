@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Market
   m_EditorClassIdentifier: 
   TurretAssets:
-  - {fileID: 11400000, guid: 43dd45ebfff7a489cb660fb500fcf189, type: 2}
+  - {fileID: 11400000, guid: b43f63da168ed8f4fb1b69b74e000a08, type: 2}
