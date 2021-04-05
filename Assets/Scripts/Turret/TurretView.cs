@@ -8,13 +8,13 @@ namespace Turret
         [SerializeField]
         private Transform m_ProjectileOrigin;
 
-        [SerializeField]
         private Animator m_Animator;
 
         [SerializeField]
         private Transform m_Tower;
         
         private TurretData m_Data;
+
         private static readonly int ShootAnimatorIndex = Animator.StringToHash("Shoot");
 
         public TurretData Data => m_Data;

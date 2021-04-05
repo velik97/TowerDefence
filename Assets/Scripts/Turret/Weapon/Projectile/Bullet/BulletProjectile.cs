@@ -5,10 +5,23 @@ namespace Turret.Weapon.Projectile.Bullet
 {
     public class BulletProjectile : MonoBehaviour, IProjectile
     {
-        private float m_Speed = 30f;
-        private int m_Damage = 5;
+        [SerializeField]
+        private GameObject m_HitFX;
+        
+        private float m_Speed;
+        private float m_Damage = 5;
         private bool m_DidHit = false;
         private EnemyData m_HitEnemy = null;
+        
+        public void SetSpeed(float speed)
+        {
+            m_Speed = speed;
+        }
+        
+        public void SetDamage(float damage)
+        {
+            m_Damage = damage;
+        }
         
         public void TickApproaching()
         {
@@ -35,6 +48,7 @@ namespace Turret.Weapon.Projectile.Bullet
 
         public void DestroyProjectile()
         {
+            Instantiate(m_HitFX, transform.position, Quaternion.identity);
             if (m_HitEnemy != null)
             {
                 m_HitEnemy.GetDamage(m_Damage);
