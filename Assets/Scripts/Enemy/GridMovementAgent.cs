@@ -42,6 +42,11 @@ namespace Enemy
             m_Transform.Translate(delta);
         }
 
+        public Node GetCurrentNode()
+        {
+            return m_TargetNode;
+        }
+
         private void SetTargetNode(Node node)
         {
             m_TargetNode = node;

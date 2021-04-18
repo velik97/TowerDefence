@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemy;
 using EnemySpawn;
 using Field;
+using Main;
 using Turret.Weapon;
 using TurretSpawn;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace Runtime
                 new TurretSpawnController(Game.Player.Grid, Game.Player.TurretMarket),
                 new MovementController(),
                 new TurretShootController(),
+                new FortressController(Game.Player.Grid),
                 new EnemyDieController()
             };
         }

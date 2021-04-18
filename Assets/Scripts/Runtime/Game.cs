@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets;
+using Main;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -27,10 +28,10 @@ namespace Runtime
         {
             s_CurrentLevel = levelAsset;
             AsyncOperation operation = SceneManager.LoadSceneAsync(levelAsset.SceneAsset.name);
-            operation.completed += StartPlayer;
+            operation.completed += StartRunner;
         }
 
-        private static void StartPlayer(AsyncOperation operation)
+        private static void StartRunner(AsyncOperation operation)
         {
             if (!operation.isDone)
             {
@@ -41,7 +42,7 @@ namespace Runtime
             s_Runner.StartRunning();
         }
 
-        public static void StopPlayer()
+        public static void StopRunner()
         {
             s_Runner.StopRunning();
         }

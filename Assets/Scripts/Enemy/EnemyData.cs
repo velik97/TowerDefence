@@ -36,5 +36,10 @@ namespace Enemy
             Debug.Log("Die");
             View.Die();
         }
+
+        public void DamageFortress()
+        {
+            View.DamageFortress();
+        }
     }
 }

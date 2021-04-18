@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using Enemy;
 using Field;
+using Runtime;
 using Turret;
 using Turret.Weapon;
 using TurretSpawn;
 using UnityEngine;
 using Grid = Field.Grid;
 
-namespace Runtime
+namespace Main
 {
     public class Player
     {
@@ -22,6 +23,9 @@ namespace Runtime
         public readonly TurretMarket TurretMarket;
         public readonly EnemySearch EnemySearch;
 
+        private int m_Health;
+        public int Health => m_Health;
+
         public Player()
         {
             GridHolder = Object.FindObjectOfType<GridHolder>();
@@ -31,6 +35,8 @@ namespace Runtime
             TurretMarket = new TurretMarket(Game.CurrentLevel.TurretMarketAsset);
 
             EnemySearch = new EnemySearch(m_EnemyDatas);
+
+            m_Health = Game.CurrentLevel.StartHealth;
         }
 
         public void EnemySpawned(EnemyData data)
@@ -41,6 +47,26 @@ namespace Runtime
         public void EnemyDied(EnemyData data)
         {
             m_EnemyDatas.Remove(data);
+        }
+
+        public void EnemyReachedFortress(EnemyData data)
+        {
+            m_EnemyDatas.Remove(data);
+            m_Health -= data.Asset.Damage;
+        }
+
+        public void CheckForGameOver()
+        {
+            if (m_Health <= 0)
+            {
+                GameOver();
+            }
+        }
+
+        private void GameOver()
+        {
+            Game.StopRunner();
+            Debug.Log("Game Over :(");
         }
 
         public void TurretSpawned(TurretData data)

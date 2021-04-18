@@ -26,5 +26,10 @@ namespace Enemy
         {
             GameObjectPool.ReturnObjectToPool(this);
         }
+
+        public void DamageFortress()
+        {
+            Debug.Log("Fortress Damaged!");
+        }
     }
 }

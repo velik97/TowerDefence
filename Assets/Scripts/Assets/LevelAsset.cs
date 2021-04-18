@@ -9,6 +9,9 @@ namespace Assets
     public class LevelAsset : ScriptableObject
     {
         public SceneAsset SceneAsset;
+
+        public int StartHealth;
+        
         public SpawnWavesAsset SpawnWavesAsset;
         public TurretMarketAsset TurretMarketAsset;
     }
