@@ -44,7 +44,8 @@ namespace Runtime
                 new EnemySpawnController(Game.CurrentLevel.SpawnWavesAsset, Game.Player.Grid),
                 new TurretSpawnController(Game.Player.Grid, Game.Player.TurretMarket),
                 new MovementController(),
-                new TurretShootController()
+                new TurretShootController(),
+                new EnemyDieController()
             };
         }
 

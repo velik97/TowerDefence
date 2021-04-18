@@ -12,11 +12,6 @@ namespace Enemy
         public EnemyData Data => m_Data;
         public IMovementAgent MovementAgent => m_MovementAgent;
 
-        public override void AwakePooled()
-        {
-            // todo spawn particles
-        }
-
         public void AttachData(EnemyData data)
         {
             m_Data = data;
