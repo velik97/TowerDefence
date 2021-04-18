@@ -11,6 +11,7 @@ namespace Assets
         public SceneAsset SceneAsset;
 
         public int StartHealth;
+        public int StartMoney;
         
         public SpawnWavesAsset SpawnWavesAsset;
         public TurretMarketAsset TurretMarketAsset;
