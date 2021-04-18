@@ -59,6 +59,8 @@ namespace EnemySpawn
                     yield return new CustomWaitForSeconds(wave.TimeBetweenSpawns);
                 }
             }
+            
+            Game.Player.LastWaveSpawned();
         }
 
         private void SpawnEnemy(EnemyAsset asset)

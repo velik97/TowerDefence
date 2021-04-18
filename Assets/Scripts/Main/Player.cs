@@ -23,6 +23,10 @@ namespace Main
         public readonly TurretMarket TurretMarket;
         public readonly EnemySearch EnemySearch;
 
+        private bool m_AllWavesAreSpawned;
+
+        public bool AllWavesAreSpawned => m_AllWavesAreSpawned;
+        
         private int m_Health;
         public int Health => m_Health;
 
@@ -37,6 +41,7 @@ namespace Main
             EnemySearch = new EnemySearch(m_EnemyDatas);
 
             m_Health = Game.CurrentLevel.StartHealth;
+            m_AllWavesAreSpawned = false;
         }
 
         public void EnemySpawned(EnemyData data)
@@ -67,6 +72,17 @@ namespace Main
         {
             Game.StopRunner();
             Debug.Log("Game Over :(");
+        }
+        
+        public void LastWaveSpawned()
+        {
+            m_AllWavesAreSpawned = true;
+        }
+
+        public void GameWin()
+        {
+            Game.StopRunner();
+            Debug.Log("Win!");
         }
 
         public void TurretSpawned(TurretData data)

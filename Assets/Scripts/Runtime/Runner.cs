@@ -47,7 +47,8 @@ namespace Runtime
                 new MovementController(),
                 new TurretShootController(),
                 new FortressController(Game.Player.Grid),
-                new EnemyDieController()
+                new EnemyDieController(),
+                new WinController()
             };
         }
 
