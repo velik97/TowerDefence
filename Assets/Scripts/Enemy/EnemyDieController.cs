@@ -28,6 +28,7 @@ namespace Enemy
             
             foreach (EnemyData enemyData in m_DiedEnemies)
             {
+                Game.Player.TurretMarket.GiveReward(enemyData);
                 Game.Player.EnemyDied(enemyData);
             }
             m_DiedEnemies.Clear();

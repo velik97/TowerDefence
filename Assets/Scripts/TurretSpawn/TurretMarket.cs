@@ -1,4 +1,5 @@
-﻿using Runtime;
+﻿using Enemy;
+using Runtime;
 using Turret;
 
 namespace TurretSpawn
@@ -23,5 +24,10 @@ namespace TurretSpawn
             => m_Money < m_Asset.TurretAssets[0].Price
                 ? null
                 : m_Asset.TurretAssets[0];
+
+        public void GiveReward(EnemyData enemyData)
+        {
+            m_Money += enemyData.Asset.Reward;
+        }
     }
 }
