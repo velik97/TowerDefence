@@ -1,4 +1,4 @@
-﻿using Assets;
+﻿using System.Collections;
 using Enemy;
 using Runtime;
 using UnityEngine;
@@ -12,8 +12,9 @@ namespace EnemySpawn
         private SpawnWavesAsset m_SpawnWaves;
         private Grid m_Grid;
 
-        private float m_SpawnStartTime;
-        private float m_PassedTimeAtPreviousFrame = -1f;
+        private IEnumerator m_SpawnEnumerator;
+
+        private float m_WaitForSecondsEndTime;
 
         public EnemySpawnController(SpawnWavesAsset spawnWaves, Grid grid)
         {
@@ -23,7 +24,8 @@ namespace EnemySpawn
 
         public void OnStart()
         {
-            m_SpawnStartTime = Time.time;
+            m_SpawnEnumerator = SpawnEnumerator();
+            m_WaitForSecondsEndTime = Time.time;
         }
 
         public void OnStop()
@@ -32,28 +34,31 @@ namespace EnemySpawn
 
         public void Tick()
         {
-            float passedTime = Time.time - m_SpawnStartTime;
-            float timeToSpawn = 0f;
-            
-            foreach (SpawnWave wave in m_SpawnWaves.SpawnWaves)
+            if (m_WaitForSecondsEndTime > Time.time)
             {
-                timeToSpawn += wave.TimeBeforeStartWave;
-
-                for (int i = 0; i < wave.Count; i++)
-                {
-                    if (passedTime >= timeToSpawn && m_PassedTimeAtPreviousFrame < timeToSpawn)
-                    {
-                        SpawnEnemy(wave.EnemyAsset);
-                    }
-
-                    if (i < wave.Count - 1)
-                    {
-                        timeToSpawn += wave.TimeBetweenSpawns;
-                    }
-                }
+                return;
             }
             
-            m_PassedTimeAtPreviousFrame = passedTime;
+            if (m_SpawnEnumerator.MoveNext())
+            {
+                if (m_SpawnEnumerator.Current is CustomWaitForSeconds waitForSeconds)
+                {
+                    m_WaitForSecondsEndTime = Time.time + waitForSeconds.Seconds;
+                }
+            }
+        }
+
+        private IEnumerator SpawnEnumerator()
+        {
+            foreach (SpawnWave wave in m_SpawnWaves.SpawnWaves)
+            {
+                yield return new CustomWaitForSeconds(wave.TimeBeforeStartWave);
+                for (int i = 0; i < wave.Count; i++)
+                {
+                    SpawnEnemy(wave.EnemyAsset);
+                    yield return new CustomWaitForSeconds(wave.TimeBetweenSpawns);
+                }
+            }
         }
 
         private void SpawnEnemy(EnemyAsset asset)
@@ -66,6 +71,16 @@ namespace EnemySpawn
             view.CreateMovementAgent(m_Grid);
 
             Game.Player.EnemySpawned(data);
+        }
+
+        private class CustomWaitForSeconds
+        {
+            public readonly float Seconds;
+
+            public CustomWaitForSeconds(float seconds)
+            {
+                Seconds = seconds;
+            }
         }
     }
 }
