@@ -21,7 +21,7 @@ namespace Main
 
             if (Game.Player.EnemyDatas.Count == 0)
             {
-                Game.Player.GameWin();
+                Game.Player.GameWon();
             }
         }
     }

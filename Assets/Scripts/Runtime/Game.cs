@@ -40,6 +40,8 @@ namespace Runtime
             s_Player = new Player();
             s_Runner = Object.FindObjectOfType<Runner>();
             s_Runner.StartRunning();
+
+            SceneManager.LoadScene(s_AssetRoot.UIScene.name, LoadSceneMode.Additive);
         }
 
         public static void StopRunner()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Enemy;
 using Field;
 using Runtime;
@@ -7,6 +8,7 @@ using Turret.Weapon;
 using TurretSpawn;
 using UnityEngine;
 using Grid = Field.Grid;
+using Object = UnityEngine.Object;
 
 namespace Main
 {
@@ -29,7 +31,15 @@ namespace Main
         
         private int m_Health;
         public int Health => m_Health;
+        public event Action<int> HealthChanged;
 
+        private int m_CurrentWave;
+        public int CurrentWave => m_CurrentWave;
+        public event Action<int> CurrentWaveChanged;
+
+        public event Action LostGame;
+        public event Action WonGame;
+        
         public Player()
         {
             GridHolder = Object.FindObjectOfType<GridHolder>();
@@ -41,7 +51,11 @@ namespace Main
             EnemySearch = new EnemySearch(m_EnemyDatas);
 
             m_Health = Game.CurrentLevel.StartHealth;
+            HealthChanged?.Invoke(m_Health);
             m_AllWavesAreSpawned = false;
+
+            m_CurrentWave = 0;
+            CurrentWaveChanged?.Invoke(m_CurrentWave);
         }
 
         public void EnemySpawned(EnemyData data)
@@ -58,20 +72,27 @@ namespace Main
         {
             m_EnemyDatas.Remove(data);
             m_Health -= data.Asset.Damage;
+            HealthChanged?.Invoke(m_Health);
         }
 
+        public void SetWave(int wave)
+        {
+            m_CurrentWave = wave;
+            CurrentWaveChanged?.Invoke(wave);
+        }
+        
         public void CheckForGameOver()
         {
             if (m_Health <= 0)
             {
-                GameOver();
+                GameLost();
             }
         }
 
-        private void GameOver()
+        private void GameLost()
         {
             Game.StopRunner();
-            Debug.Log("Game Over :(");
+            LostGame?.Invoke();
         }
         
         public void LastWaveSpawned()
@@ -79,10 +100,10 @@ namespace Main
             m_AllWavesAreSpawned = true;
         }
 
-        public void GameWin()
+        public void GameWon()
         {
             Game.StopRunner();
-            Debug.Log("Win!");
+            WonGame?.Invoke();
         }
 
         public void TurretSpawned(TurretData data)

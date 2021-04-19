@@ -50,8 +50,10 @@ namespace EnemySpawn
 
         private IEnumerator SpawnEnumerator()
         {
+            int waveNum = 0;
             foreach (SpawnWave wave in m_SpawnWaves.SpawnWaves)
             {
+                Game.Player.SetWave(waveNum++);
                 yield return new CustomWaitForSeconds(wave.TimeBeforeStartWave);
                 for (int i = 0; i < wave.Count; i++)
                 {

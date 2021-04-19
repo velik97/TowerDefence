@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BulletPrefab: {fileID: 8002873523703572853, guid: 37aec582533dbbf46af0ebbdceb1e491, type: 3}
   Speed: 40
-  Damage: 5
+  Damage: 3

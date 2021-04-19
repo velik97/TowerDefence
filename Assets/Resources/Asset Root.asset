@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d461d986b4943a41d4880d2d1e510, type: 3}
   m_Name: Asset Root
   m_EditorClassIdentifier: 
+  UIScene: {fileID: 102900000, guid: 9acae54868611994bb43677f6ca032bf, type: 3}
   Levels:
   - {fileID: 11400000, guid: f30c214aa709115428529d69bc8eddae, type: 2}
