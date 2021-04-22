@@ -12,6 +12,8 @@ namespace Enemy
         public EnemyView View => m_View;
         public EnemyAsset Asset => m_Asset;
 
+        public bool IsDead => m_Health <= 0;
+
         public EnemyData(EnemyAsset asset)
         {
             m_Asset = asset;
@@ -26,16 +28,22 @@ namespace Enemy
 
         public void GetDamage(float damage)
         {
-            m_Health -= damage;
-            if (m_Health < 0)
+            if (IsDead)
             {
-                Die();
+                return;
             }
+            m_Health -= damage;
         }
 
-        private void Die()
+        public void Die()
         {
-            Debug.Log("Die");
+            View.Die();
+        }
+
+        public void ReachedTarget()
+        {
+            m_Health = 0;
+            View.ReachedTarget();
         }
     }
 }

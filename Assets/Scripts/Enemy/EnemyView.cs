@@ -20,5 +20,15 @@ namespace Enemy
         {
             m_MovementAgent = new GridMovementAgent(m_Data.Asset.Speed, transform, grid);
         }
+
+        public void Die()
+        {
+            Destroy(gameObject);
+        }
+
+        public void ReachedTarget()
+        {
+            Destroy(gameObject);
+        }
     }
 }

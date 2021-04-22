@@ -8,5 +8,8 @@ namespace Enemy
         public float StartHealth;
         public float Speed;
         public EnemyView ViewPrefab;
+
+        public int Damage;
+        public int Reward;
     }
 }
