@@ -70,6 +70,10 @@ namespace Main
         public void ApplyDamage(int damage)
         {
             m_Health -= damage;
+            if (m_Health < 0)
+            {
+                m_Health = 0;
+            }
             HealthChanged?.Invoke(m_Health);
         }
 

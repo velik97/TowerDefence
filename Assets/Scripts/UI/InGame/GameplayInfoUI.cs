@@ -16,8 +16,14 @@ namespace UI.InGame
         [SerializeField]
         private Text m_WaveText;
 
+        private int m_StartHealth;
+        private int m_WavesCount;
+
         private void OnEnable()
         {
+            m_StartHealth = Game.CurrentLevel.StartHealth;
+            m_WavesCount = Game.CurrentLevel.SpawnWavesAsset.SpawnWaves.Length;
+            
             SetHealth(Game.Player.Health);
             SetMoney(Game.Player.TurretMarket.Money);
             SetWave(Game.Player.WaveNumber);
@@ -36,7 +42,7 @@ namespace UI.InGame
 
         private void SetHealth(int health)
         {
-            m_HeathText.text = $"Health: {health}";
+            m_HeathText.text = $"Health: {health}/{m_StartHealth}";
         }
 
         private void SetMoney(int money)
@@ -46,7 +52,7 @@ namespace UI.InGame
 
         private void SetWave(int wave)
         {
-            m_WaveText.text = $"Wave: {wave}";
+            m_WaveText.text = $"Wave: {wave}/{m_WavesCount}";
         }
     }
 }
