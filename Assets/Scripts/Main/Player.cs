@@ -31,6 +31,10 @@ namespace Main
         public int Health => m_Health;
         public event Action<int> HealthChanged;
 
+        private int m_WaveNumber = 1;
+        public int WaveNumber => m_WaveNumber;
+        public event Action<int> WaveNumberChanged; 
+
         public Player()
         {
             GridHolder = Object.FindObjectOfType<GridHolder>();
@@ -67,6 +71,12 @@ namespace Main
         {
             m_Health -= damage;
             HealthChanged?.Invoke(m_Health);
+        }
+
+        public void SetWaveNumber(int waveNumber)
+        {
+            m_WaveNumber = waveNumber;
+            WaveNumberChanged?.Invoke(waveNumber);
         }
 
         public void TurretSpawned(TurretData data)

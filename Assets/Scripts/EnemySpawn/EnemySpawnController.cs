@@ -50,23 +50,23 @@ namespace EnemySpawn
 
         private IEnumerator SpawnRoutine()
         {
-            foreach (SpawnWave wave in m_SpawnWaves.SpawnWaves)
+            for (int waveNum = 0; waveNum < m_SpawnWaves.SpawnWaves.Length; waveNum++)
             {
+                SpawnWave wave = m_SpawnWaves.SpawnWaves[waveNum];
                 yield return new CustomWaitForSeconds(wave.TimeBeforeStartWave);
+                Game.Player.SetWaveNumber(waveNum + 1);
 
                 for (int i = 0; i < wave.Count; i++)
                 {
                     SpawnEnemy(wave.EnemyAsset);
-                    
+
                     if (i < wave.Count - 1)
                     {
                         yield return new CustomWaitForSeconds(wave.TimeBetweenSpawns);
                     }
                 }
-                
-                // todo show wave number
             }
-            
+
             Game.Player.LastWaveSpawned();
         }
 
