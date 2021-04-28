@@ -19,5 +19,10 @@ namespace Turret.Weapon.Projectile.Bullet
             projectile.SetAsset(this);
             return projectile;
         }
+
+        public override string GetDescription()
+        {
+            return $"Damage: {Damage}";
+        }
     }
 }

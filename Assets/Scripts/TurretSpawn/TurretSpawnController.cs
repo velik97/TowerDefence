@@ -36,7 +36,7 @@ namespace TurretSpawn
                     return;
                 }
 
-                TurretAsset asset = m_Market.ChosenTurret;
+                TurretAsset asset = m_Market.SelectedTurret;
 
                 if (asset != null)
                 {

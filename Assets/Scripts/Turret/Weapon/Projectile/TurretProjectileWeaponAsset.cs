@@ -14,5 +14,12 @@ namespace Turret.Weapon.Projectile
         {
             return new TurretProjectileWeapon(this, view);
         }
+
+        public override string GetDescription()
+        {
+            return $"Rate of fire: {RateOfFire} in seconds\n" +
+                   $"Range: {MaxDistance} meters\n" +
+                   ProjectileAsset.GetDescription();
+        }
     }
 }
