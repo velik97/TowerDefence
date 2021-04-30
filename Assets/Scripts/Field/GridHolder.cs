@@ -75,7 +75,7 @@ namespace Field
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                if (hit.transform != transform)
+                if (hit.transform != transform || EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
                 {
                     m_Grid.UnselectNode();
                     return;
