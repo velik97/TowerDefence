@@ -1,4 +1,5 @@
-﻿using Runtime;
+﻿using System;
+using Runtime;
 using Turret;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,14 +45,31 @@ namespace UI.InGame
             }
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (Game.Player.TurretMarket.IsBuilding)
+                {
+                    StopBuilding();
+                }
+                else
+                {
+                    StartBuilding();
+                }
+            }
+        }
+
         private void StartBuilding()
         {
+            Game.Player.TurretMarket.StartBuilding();
             m_TurretMarketObject.SetActive(true);
             m_StartBuildingButton.gameObject.SetActive(false);
         }
 
         private void StopBuilding()
         {
+            Game.Player.TurretMarket.StopBuilding();
             m_TurretMarketObject.SetActive(false);
             m_StartBuildingButton.gameObject.SetActive(true);
         }

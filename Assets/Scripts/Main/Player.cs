@@ -41,7 +41,7 @@ namespace Main
             GridHolder.CreateGrid();
             Grid = GridHolder.Grid;
 
-            TurretMarket = new TurretMarket(Game.CurrentLevel.TurretMarketAsset);
+            TurretMarket = new TurretMarket();
 
             EnemySearch = new EnemySearch(m_EnemyDatas);
             m_Health = Game.CurrentLevel.StartHealth;
