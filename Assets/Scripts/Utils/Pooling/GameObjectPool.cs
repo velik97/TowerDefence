@@ -111,6 +111,8 @@ namespace Utils.Pooling
                 newQueue.Enqueue(instance);
                 s_PooledObjects[id] = newQueue;
             }
+            
+            instance.OnDestroyPooled();
 
             instance.transform.parent = Instance.transform;
         }

@@ -33,7 +33,10 @@ namespace Main
 
         private int m_WaveNumber = 1;
         public int WaveNumber => m_WaveNumber;
-        public event Action<int> WaveNumberChanged; 
+        public event Action<int> WaveNumberChanged;
+
+        public event Action<EnemyData> OnEnemySpawned;
+        public event Action<EnemyData> OnEnemyDied; 
 
         public Player()
         {
@@ -50,16 +53,19 @@ namespace Main
         public void EnemySpawned(EnemyData data)
         {
             m_EnemyDatas.Add(data);
+            OnEnemySpawned?.Invoke(data);
         }
 
         public void EnemyDied(EnemyData data)
         {
             m_EnemyDatas.Remove(data);
+            OnEnemyDied?.Invoke(data);
         }
 
         public void EnemyReachedTarget(EnemyData data)
         {
             m_EnemyDatas.Remove(data);
+            OnEnemyDied?.Invoke(data);
         }
 
         public void LastWaveSpawned()

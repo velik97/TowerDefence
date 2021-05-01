@@ -9,6 +9,9 @@ namespace Utils.Pooling
 
         public virtual void AwakePooled()
         { }
+        
+        public virtual void OnDestroyPooled()
+        { }
 
         public void SetPrefabId(int id)
         {
