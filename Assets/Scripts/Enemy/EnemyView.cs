@@ -5,11 +5,15 @@ namespace Enemy
 {
     public class EnemyView : MonoBehaviour
     {
+        [SerializeField]
+        private Transform m_Center;
+        
         private EnemyData m_Data;
         private IMovementAgent m_MovementAgent;
 
         public EnemyData Data => m_Data;
         public IMovementAgent MovementAgent => m_MovementAgent;
+        public Transform Center => m_Center;
 
         public void AttachData(EnemyData data)
         {

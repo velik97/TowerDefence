@@ -14,6 +14,8 @@ namespace Enemy
 
         public bool IsDead => m_Health <= 0;
 
+        public float Health => m_Health;
+
         public EnemyData(EnemyAsset asset)
         {
             m_Asset = asset;
